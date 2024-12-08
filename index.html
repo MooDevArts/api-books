@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Books API</title>
+  </head>
+  <body>
+    <h1>Google Books API</h1>
+
+    <ul id="bookList"></ul>
+
+    <script>
+      var bookContainer = document.getElementById("bookList"); // Renamed from 'bookList'
+      var apiKey = "AIzaSyDLP2SSp9IhlKdAJwjXFFw-t7it7FJRBh0"; // Renamed from 'key'
+      var apiUrl = "https://www.googleapis.com/books/v1/volumes?q=goosebumps&key="; // Renamed from 'url'
+
+      fetch(apiUrl + apiKey)
+        .then(function (apiResponse) { // Renamed from 'response'
+          console.log(apiResponse);
+          return apiResponse.json();
+        })
+        .then(function (apiData) { // Renamed from 'data'
+          console.log(apiData);
+
+          apiData.items.forEach(function (bookItem) { // Renamed from 'item'
+            var bookTitle = bookItem.volumeInfo.title; // Renamed from 'title'
+            var bookAuthor = bookItem.volumeInfo.authors[0]; // Renamed from 'author'
+            var bookLink = bookItem.volumeInfo.canonicalVolumeLink; // Renamed from 'link'
+            var bookImage = bookItem.volumeInfo.imageLinks.smallThumbnail; // Renamed from 'image'
+
+            var listItem = "<li><h2>" + bookTitle + "</h2>" + bookAuthor + "<br>" +
+                           "<a href=" + bookLink + ">" + bookLink + "</a><br>" +
+                           "<img src='" + bookImage + "'>" + "</li>"; // Renamed from 'newItem'
+            bookContainer.innerHTML += listItem;
+          });
+        });
+    </script>
+  </body>
+</html>
