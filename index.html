@@ -30,7 +30,7 @@
             var bookImage = bookItem.volumeInfo.imageLinks.smallThumbnail; // Renamed from 'image'
 
             var listItem = "<li><h2>" + bookTitle + "</h2>" + bookAuthor + "<br>" +
-                           "<a href=" + bookLink + ">" + bookLink + "</a><br>" +
+                           "<a href=" + bookLink + ">" + "Open in Google Books" + "</a><br>" +
                            "<img src='" + bookImage + "'>" + "</li>"; // Renamed from 'newItem'
             bookContainer.innerHTML += listItem;
           });
